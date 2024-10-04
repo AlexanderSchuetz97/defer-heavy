@@ -8,6 +8,7 @@ description = "A versatile and easy to use defer statement for Rust. Similar to 
 categories = ["no-std", "rust-patterns"]
 keywords = ["defer", "deferred"]
 readme = "README.md"
+repository = "https://github.com/AlexanderSchuetz97/defer-heavy"
 
 [features]
 default = ["mt"]
