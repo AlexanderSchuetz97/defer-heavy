@@ -3,7 +3,7 @@ A versatile and easy to use defer statement for Rust. Similar to Go's or Zig's d
 Loosely based on and inspired by:
 https://github.com/rodrigocfd/defer-lite
 
-This crate is compatible uses `no_std`.
+This crate uses `no_std`.
 The default features use `alloc`.
 To disable alloc set default-features to false in cargo.toml.
 
