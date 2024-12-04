@@ -1,8 +1,6 @@
-use defer_heavy::{defer, defer_guard, defer_move, defer_move_guard, defer_opt, defer_opt_guard};
+use defer_heavy::{defer, defer_guard, defer_move, defer_move_guard};
 use std::cell::RefCell;
 use std::rc::Rc;
-use std::sync::atomic::AtomicBool;
-use std::sync::atomic::Ordering::SeqCst;
 
 #[cfg(feature = "mt")]
 mod mt_test {
@@ -172,42 +170,4 @@ pub fn test_macros_compile() {
     let _guard = defer_move_guard! {
         println!("HI4");
     };
-
-    defer_opt!{
-        println!("HI5");
-    }
-
-    let _guard = defer_opt_guard! {
-         println!("HI6");
-    };
-
-    defer_opt!{
-        println!("HI7");
-    }
-
-    let _guard = defer_opt_guard! {
-         println!("HI8");
-    };
-}
-#[test]
-pub fn test_defer_struct_compiles() {
-    test_defer_struct(&AtomicBool::new(false));
-}
-
-#[inline(never)]
-pub fn dummy() {
-    println!("dummy");
-}
-
-#[inline(never)]
-pub fn test_defer_struct(spin_lock: &AtomicBool) {
-    if !spin_lock.swap(true, SeqCst) {
-        return;
-    }
-
-    defer_opt! {
-        spin_lock.store(false, SeqCst);
-    };
-
-    dummy();
 }
